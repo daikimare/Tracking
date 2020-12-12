@@ -33,7 +33,7 @@ cvs.width = 640; cvs.height = 360;
 // face-apiで顔のランドマークを取得します。
 let faceData;
 async function getLandMarks(){
-  faceData = await faceapi.detectSingleFace(video).withFaceLandmarks();
+  faceData = await faceapi.detectAllFace(video).withFaceLandmarks();
 
   if(faceData == null) return;
   drawLandMarks(faceData.landmarks.positions);
