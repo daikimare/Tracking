@@ -33,7 +33,10 @@ Promise.all([
 // 顔のランドマーク取得
 let faceData;
 async function getLandMarks(){
-  faceData = await faceapi.detectAllFaces
+  faceData = await faceapi.detectAllFaces(video).withFaceLandmarks();
+
+  if (faceData == null) return;
+  drawLandMarks(faceData.landmarks.positions);
 }
 
 // 画像の取得

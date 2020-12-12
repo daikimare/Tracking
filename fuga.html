@@ -2,32 +2,32 @@
 <head>
     <title>WebCam Test</title>
 <style>
-  .container {
-    position: relative;
-  }
-  #video {
-    width: 640px;
-    height: 360px;
-    position: absolute;
-    top: 0; left: 0;
-    z-index: 1;
-  }
-  #canvas {
-    width: 640px;
-    height: 360px;
-    position: absolute;
-    top: 0; left: 0;
-    z-index: 2;
-  }
+    .container {
+        position: relative;
+    }
+    #video {
+        width: 640px;
+        height: 360px;
+        position: absolute;
+        top: 0; left: 0;
+        z-index: 1;
+    }
+    #canvas {
+        width: 640px;
+        height: 360px;
+        position: absolute;
+        top: 0; left: 0;
+        z-index: 2;
+    }
 </style>
 </head>
 <body>
-  <div class="container">
-    <video id="video" autoplay muted playsinline></video>
-    <canvas id="canvas"></canvas>
-    <a href="./hoge.html">別バージョン</a>
-  </div>
-  <script src="./JS/face-api.js"></script>
-  <script src="./JS/main.js"></script>
+    <div class="container">
+        <video id="video" autoplay muted playsinline></video>
+        <canvas id="canvas"></canvas>
+    </div>
+
+  <script src="./js/face-api.js"></script>
+  <script src="./js/main.js"></script>
 </body>
 </html>
