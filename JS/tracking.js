@@ -33,7 +33,7 @@ Promise.all([
 // 顔のランドマーク取得
 let faceData;
 async function getLandMarks(){
-  faceData = await faceapi.detectAllFaces(video).withFaceLandmarks();
+  faceData = await faceapi.detectSingleFaces(video).withFaceLandmarks();
 
   if (faceData == null) return;
   drawLandMarks(faceData.landmarks.positions);
@@ -44,7 +44,7 @@ const app = async () => {
   await faceapi.nets.tinyFaceDetector.load("JS/weights/");
   await faceapi.nets.faceLandmark68Net.load("JS/weights/");
 
-  const detections = await faceapi.detectAllFaces(video,
+  const detections = await faceapi.detectSingleFaces(video,
     new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks()
 
   console.log(detectionsWithLandmarks);

@@ -1,4 +1,3 @@
-// 2で配置したモデルを読み込む。
 Promise.all([
   faceapi.nets.ssdMobilenetv1.load('./models'), // 精度の高い顔検出モデル
   faceapi.nets.faceLandmark68Net.load('./models'), // 顔の68個のランドマークの検出モデル
@@ -33,7 +32,7 @@ cvs.width = 640; cvs.height = 360;
 // face-apiで顔のランドマークを取得します。
 let faceData;
 async function getLandMarks(){
-  faceData = await faceapi.detectAllFace(video).withFaceLandmarks();
+  faceData = await faceapi.detectSingleFace(video).withFaceLandmarks();
 
   if(faceData == null) return;
   drawLandMarks(faceData.landmarks.positions);
