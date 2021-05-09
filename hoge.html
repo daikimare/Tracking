@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>face-api.js</title>
+  <style>
+    .container {
+      position: relative;
+    }
+    #video {
+      width: 640px;
+      height: 360px;
+      position: absolute;
+      top: 0; left: 0;
+      z-index: 1;
+    }
+    #canvas {
+      width: 640px;
+      height: 360px;
+      position: absolute;
+      top: 0; left: 0;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+  <script src="./face-api.js/js/face-api.min.js"></script>
+  <div class="container">
+    <video id="video" autoplay muted playsinline></video>
+    <canvas id="canvas"></canvas>
+  </div>
+  <script>
+    // Webカメラの起動
+    const video = document.getElementById('video');
+    const media = navigator.mediaDevices.getUserMedia({
+      audio: false,
+      video: {
+          width: 640,
+          height: 360,
+          aspectRatio: 1.77,
+          facingMode: "user",
+      }
+    }).then((stream) => {
+      video.srcObject = stream;
+      video.onloadeddata = () => {
+          video.play();
+      }
+    }).catch((e) => {
+      console.log(e);
+    });
+
+    // 描画用canvasの設定
+    const cvs = document.getElementById('canvas');
+    const ctx = cvs.getContext('2d');
+    cvs.width = 640; cvs.height = 360;
+
+    // 画像の取得
+    const app = async () => {
+      await faceapi.nets.tinyFaceDetector.load("models/");
+      await faceapi.nets.faceLandmark68Net.load("models/");
+
+      const detections = await faceapi.detectAllFaces(video,
+        new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks()
+
+      console.log(detectionsWithLandmarks);
+    }
+    app()
+  </script>
+</body>
+</html>
